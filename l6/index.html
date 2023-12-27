@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h2>Возведение в степень</h2>
+            <div class="input-container">
+                <input type="number" id="pow-base" placeholder="Основание">
+                <input type="number" id="pow-exponent" placeholder="Показатель степени">
+                <button class="btn" onclick="calculatePow()">Рассчитать</button>
+            </div>
+            <p id="pow-result"></p>
+        </div>
+
+        <div class="container">
+            <h2>Нахождение НОД</h2>
+            <div class="input-container">
+                <input type="number" id="gcd-a" placeholder="Число a">
+                <input type="number" id="gcd-b" placeholder="Число b">
+                <button class="btn" onclick="calculateGcd()">Рассчитать</button>
+            </div>
+            <p id="gcd-result"></p>
+        </div>
+
+        <div class="container">
+            <h2>Наименьшая цифра</h2>
+            <div class="input-container">
+                <input type="number" id="min-digit-input" placeholder="Введите число">
+                <button class="btn" onclick="findMinDigit()">Найти</button>
+            </div>
+            <p id="min-digit-result"></p>
+        </div>
+
+        <div class="container">
+            <h2>Pluralization</h2>
+            <div class="input-container">
+                <input type="number" id="pluralize-input" placeholder="Введите число">
+                <button class="btn" onclick="generatePluralizedString()">Сгенерировать строку</button>
+            </div>
+            <p id="pluralize-result"></p>
+        </div>
+
+        <div class="container">
+            <h2>Числа Фибоначчи</h2>
+            <div class="input-container">
+                <input type="number" id="fibb-input" placeholder="Введите число">
+                <button class="btn" onclick="calculateFibb()">Рассчитать</button>
+            </div>
+            <p id="fibb-result"></p>
+        </div>
+    </main>
+
+    <script>
+        // Возведение в степень
+        function calculatePow() {
+            const base = parseInt(document.getElementById("pow-base").value);
+            const exponent = parseInt(document.getElementById("pow-exponent").value);
+            const result = pow(base, exponent);
+            document.getElementById("pow-result").textContent = `Результат: ${result}`;
+        }
+
+        // Нахождение НОД
+        function calculateGcd() {
+            const a = parseInt(document.getElementById("gcd-a").value);
+            const b = parseInt(document.getElementById("gcd-b").value);
+            const result = gcd(a, b);
+            document.getElementById("gcd-result").textContent = `Результат: ${result}`;
+        }
+
+        // Наименьшая цифра
+        function findMinDigit() {
+            const x = parseInt(document.getElementById("min-digit-input").value);
+            const result = minDigit(x);
+            document.getElementById("min-digit-result").textContent = `Наименьшая цифра: ${result}`;
+        }
+
+        // Pluralization
+        function generatePluralizedString() {
+            const n = parseInt(document.getElementById("pluralize-input").value);
+            const result = pluralizeRecords(n);
+            document.getElementById("pluralize-result").textContent = result;
+        }
+
+        // Числа Фибоначчи
+        function calculateFibb() {
+            const n = parseInt(document.getElementById("fibb-input").value);
+            const result = fibb(n);
+            document.getElementById("fibb-result").textContent = `Число Фибоначчи: ${result}`;
+        }
+
+        function pow(x, n) {
+            if (n === 0) {
+                return 1;
+            }
+            let result = x;
+            for (let i = 1; i < n; i++) {
+                result *= x;
+            }
+            return result;
+        }
+
+        function gcd(a, b) {
+            if (b === 0) {
+                return a;
+            }
+            return gcd(b, a % b);
+        }
+
+        function minDigit(x) {
+            const digits = x.toString().split('').map(Number);
+            return Math.min(...digits);
+        }
+
+        function pluralizeRecords(n) {
+            if (n === 1) {
+                return `В результате выполнения запроса была найдена ${n} запись`;
+            }
+            if (n % 10 === 1 && n % 100 !== 11) {
+                return `В результате выполнения запроса было найдено ${n} запись`;
+            } else if (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) {
+                return `В результате выполнения запроса было найдено ${n} записи`;
+            } else {
+                return `В результате выполнения запроса было найдено ${n} записей`;
+            }
+    
+        }
+
+        function fibb(n) {
+            if (n <= 1) {
+                return n;
+            }
+            prev = 0;
+            current = 1;
+            for (let i = 2; i <= n; i++) {
+                temp = current;
+                current = prev + current;
+                prev = temp;
+            }
+            return current;
+        }
+    </script>
+</body>
+
+</html>

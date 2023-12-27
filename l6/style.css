@@ -1,0 +1,37 @@
+/* Общий стиль контейнера */
+.container {
+    background-color: #c0c0c0;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Стиль контейнера для ввода чисел и кнопки */
+.input-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Стиль кнопки */
+.btn {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/* При наведении на кнопку */
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Стиль для результатов */
+p {
+    margin: 10px 0;
+    font-weight: bold;
+}
